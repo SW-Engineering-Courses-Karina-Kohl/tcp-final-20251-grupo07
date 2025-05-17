@@ -1,0 +1,8 @@
+17/05/2025
+
+- Vai ter um banco/dicionário de palavras? como será feita a randomização?
+- A dificuldade é pelo tamanho das palavras… quais seriam os tamanhos pra cada nível de dificuldade?
+- As bananas de dinamite vão explodir se o jogador perder a rodada? 👀
+
+IMPORTANTE: Leandra não está no repositório ainda. Não vou atribuir nota. 
+Poderei dar nota depois, mas será com algum desconto nessas etapas a depender da contribuição nas demais etapas!
