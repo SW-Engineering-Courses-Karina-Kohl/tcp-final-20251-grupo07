@@ -1,4 +1,4 @@
-##Pra compilar pelo cmd
+## Pra compilar pelo cmd
 
 1. cd --> caminho até a pasta src no computador
 2. esses comandos agrupam todos arquivos.class numa pasta chamada out:
