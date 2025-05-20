@@ -1,0 +1,16 @@
+package categorias;
+
+public class Mamifero extends Animais {
+    public String nomecategoria;
+
+    public Mamifero (String nomecategoria) {
+        super(nomecategoria);
+    }
+
+     @Override
+    // Retorna o nome da categoria, impressão na tela é feita por outro método.
+    public String exibirdica () {
+        return "Este animal é um mamífero.";
+    }
+    
+}
