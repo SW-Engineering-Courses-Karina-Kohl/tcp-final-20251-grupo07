@@ -2,8 +2,6 @@ package categorias;
 import app.Categoria;
 
 public abstract class Personagem extends Categoria {
-    public String nomecategoria;
-
     public Personagem (String nomecategoria) {
         super(nomecategoria);
     }
@@ -14,7 +12,7 @@ public abstract class Personagem extends Categoria {
 
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
     public String exibircategoria () {
-        return "Categoria: Personagem";
+        return "Categoria: " + nomecategoria;
     }
     
 }

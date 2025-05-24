@@ -1,8 +1,6 @@
 package categorias;
 
 public class Marinho extends Animais {
-    public String nomecategoria;
-
     public Marinho (String nomecategoria) {
         super(nomecategoria);
     }

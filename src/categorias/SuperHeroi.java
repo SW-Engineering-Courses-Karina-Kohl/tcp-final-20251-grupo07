@@ -1,8 +1,6 @@
 package categorias;
 
 public class SuperHeroi extends Personagem {
-    public String nomecategoria;
-
     public SuperHeroi (String nomecategoria) {
         super(nomecategoria);
     }

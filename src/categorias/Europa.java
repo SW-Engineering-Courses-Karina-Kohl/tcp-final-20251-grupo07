@@ -1,8 +1,6 @@
 package categorias;
 
 public class Europa extends Paises{
-    public String nomecategoria;
-
     public Europa (String nomecategoria) {
         super(nomecategoria);
     }

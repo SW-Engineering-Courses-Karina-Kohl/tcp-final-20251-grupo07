@@ -1,8 +1,6 @@
 package categorias;
 
 public class Mamifero extends Animais {
-    public String nomecategoria;
-
     public Mamifero (String nomecategoria) {
         super(nomecategoria);
     }

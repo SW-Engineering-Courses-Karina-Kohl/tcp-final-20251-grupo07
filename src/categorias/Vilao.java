@@ -1,8 +1,6 @@
 package categorias;
 
 public class Vilao extends Personagem {
-    public String nomecategoria;
-
     public Vilao (String nomecategoria) {
         super(nomecategoria);
     }

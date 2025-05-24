@@ -1,8 +1,6 @@
 package categorias;
 
 public class Animacao extends Personagem {
-    public String nomecategoria;
-
     public Animacao (String nomecategoria) {
         super(nomecategoria);
     }
