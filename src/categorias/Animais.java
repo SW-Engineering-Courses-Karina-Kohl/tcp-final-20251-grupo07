@@ -6,12 +6,12 @@ public abstract class Animais extends Categoria {
         super(nomecategoria);
     }
 
-    public abstract String exibirdica();
+    public abstract String exibirDica();
 
     @Override
 
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
-    public String exibircategoria () {
+    public String exibirCategoria () {
         return "Categoria: " + nomecategoria;
     }
     

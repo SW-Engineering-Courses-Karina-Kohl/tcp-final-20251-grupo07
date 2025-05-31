@@ -7,7 +7,7 @@ public abstract class Categoria {
       this.nomecategoria = var1;
    }
 
-   public abstract String exibircategoria();
+   public abstract String exibirCategoria();
 
-   public abstract String exibirdica();
+   public abstract String exibirDica();
 }

@@ -7,7 +7,7 @@ public class America extends Paises {
 
      @Override
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
-    public String exibirdica () {
+    public String exibirDica () {
         return "Este país é da América.";
     }
     

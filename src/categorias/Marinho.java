@@ -7,7 +7,7 @@ public class Marinho extends Animais {
 
      @Override
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
-    public String exibirdica () {
+    public String exibirDica () {
         return "Este animal é marinho.";
     }
     

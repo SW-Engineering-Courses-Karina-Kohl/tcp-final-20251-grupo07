@@ -7,7 +7,7 @@ public class Vilao extends Personagem {
 
      @Override
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
-    public String exibirdica () {
+    public String exibirDica () {
         return "Este personagem é um vilão.";
     }
     
