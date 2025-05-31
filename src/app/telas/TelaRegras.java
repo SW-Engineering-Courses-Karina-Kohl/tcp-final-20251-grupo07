@@ -13,7 +13,7 @@ public class TelaRegras {
 
         // Painel interno com regras (caixa central)
         JPanel caixaRegras = new JPanel();
-        caixaRegras.setPreferredSize(new Dimension(800, 500));
+        caixaRegras.setPreferredSize(new Dimension(800, 400));
         caixaRegras.setBackground(new Color(218, 201, 164));
         caixaRegras.setBorder(BorderFactory.createDashedBorder(Color.GRAY));
         caixaRegras.setLayout(new BorderLayout(10, 10));

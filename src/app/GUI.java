@@ -4,6 +4,9 @@ import app.telas.*;
 import javax.swing.*;
 import java.awt.*;
 
+//botoes arredondados
+//fonte Departure Mono
+
 public class GUI extends JFrame {
     private CardLayout cardLayout;
     private JPanel painelCartoes;
