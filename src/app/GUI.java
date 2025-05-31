@@ -1,151 +1,74 @@
 package app;
+import app.telas.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
-    private CardLayout cardLayout = new CardLayout();
-    private JPanel cardPanel = new JPanel(); // Contém todas as telas do jogo
+    private CardLayout cardLayout;
+    private JPanel painelCartoes;
     private int numvidas;
 
-    // Construtor com todas as telas já pré determinadas
     public GUI() {
         setTitle("Jogo da Forca");
-        setSize(1400, 700);
+        setSize(1080, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centraliza a janela
-        numvidas = 0; // Somente para testar switch case, isso tem que ser implementado com a lógica do jogo
+        setLocationRelativeTo(null);
+        numvidas = 0;
 
-        cardPanel.setLayout(cardLayout);
+        // Painel fundo amarelo (sempre fixo)
+        JPanel painelFundo = new JPanel();
+        painelFundo.setBackground(new Color(247, 231, 166));
+        painelFundo.setLayout(new GridBagLayout()); // Centraliza o painel cinza
+        add(painelFundo); // adiciona no JFrame diretamente
 
-        // Cria as "telas" (cada uma é um JPanel)
-        JPanel telaJogo = exibir_tela_principal(numvidas);
-        JPanel telaRegras = exibir_regras();
-        JPanel telaPerdeu = exibir_tela_perdeu();
-        JPanel telaGanhou = exibir_tela_ganhou();
+        // Painel cinza com CardLayout (menor, sobreposto)
+        cardLayout = new CardLayout();
+        painelCartoes = new JPanel(cardLayout);
+        painelCartoes.setPreferredSize(new Dimension(800, 500)); // menor que o painel amarelo
+        painelCartoes.setBackground(new Color(218, 201, 164));
 
-        // Adiciona as "telas" ao cardPanel com nomes únicos
-        cardPanel.add(telaJogo, "JOGO");
-        cardPanel.add(telaRegras, "REGRAS");
-        cardPanel.add(telaPerdeu, "PERDEU");
-        cardPanel.add(telaGanhou, "GANHOU");
+        // Telas reais (JPanel com conteúdo) para cada seção
+        JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes,numvidas); // Você pode criar esse método depois
+        JPanel telaRegras = TelaRegras.criar(cardLayout, painelCartoes);
+        JPanel telaPerdeu = new JPanel();
+        JPanel telaGanhou = new JPanel();
 
-        // Adiciona o cardPanel ao JFrame
-        add(cardPanel);
+        // Adiciona cada tela ao painel de cartões com sua respectiva "chave"
+        painelCartoes.add(telaJogo, "JOGO");
+        painelCartoes.add(telaRegras, "REGRAS");
+        painelCartoes.add(telaPerdeu, "PERDEU");
+        painelCartoes.add(telaGanhou, "GANHOU");
 
-        // Exibe a tela inicial - tela do jogo
-        cardLayout.show(cardPanel, "JOGO");
+        // Adiciona o painel cinza centralizado dentro do painel amarelo
+        painelFundo.add(painelCartoes); // GridBag centraliza automaticamente
+
+        // Exibe a tela inicial
+        cardLayout.show(painelCartoes, "JOGO");
+
+        setVisible(true);
     }
 
-    private JPanel exibir_tela_principal(int numvidas) {
-    JPanel panel = new JPanel();
-    panel.setBackground(new Color(227, 190, 111)); 
-    panel.setLayout(null); // Precisa começar null para conseguirmos determinar posições e paramêtros especificos dos botões
-    
-    JButton botao_regras = new JButton("Regras");
-    botao_regras.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            cardLayout.show(cardPanel, "REGRAS"); // Troca para a tela de regras
-        }
-    });
-
-    ImageIcon imagemOriginal = new ImageIcon();
-
-    switch (numvidas) {
-        case 7:
-            imagemOriginal = new ImageIcon("imagens/forca.png");
-            break;
-        case 6:
-            imagemOriginal = new ImageIcon("imagens/boneco_cabeca.png");
-            break;
-        case 5:
-            imagemOriginal = new ImageIcon("imagens/boneco_torso.png");
-            break;
-        case 4:
-            imagemOriginal = new ImageIcon("imagens/boneco_braco1.png");
-            break;
-        case 3:
-            imagemOriginal = new ImageIcon("imagens/boneco_braco2.png");
-            break;
-        case 2:
-            imagemOriginal = new ImageIcon("imagens/boneco_perna1.png");
-            break;
-        case 1:
-            imagemOriginal = new ImageIcon("imagens/boneco_completo.png");
-            break;
-        default:
-            imagemOriginal = new ImageIcon("imagens/boneco_completo.png");
-            break;
-    }
-
-    // Redimensiona a imagem (largura = 200, altura = 150)
-    Image imagemRedimensionada = imagemOriginal.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
-    ImageIcon novaImagem = new ImageIcon(imagemRedimensionada);
-
-    JLabel labelImagem = new JLabel(novaImagem);
-
-    // Posiciona a imagem na tela (ex: 50px da esquerda, 85px do topo)
-    labelImagem.setBounds(50, 130, novaImagem.getIconWidth(), novaImagem.getIconHeight()); // posição (x, y) e tamanho (w, h)
-
-    // Adiciona ao painel
-    panel.add(labelImagem);
-
-    botao_regras.setBounds(300, 200, 100, 30);
-    panel.add(botao_regras); 
-    
-    return panel;
-}
-
-    private JPanel exibir_regras() {
+    private JPanel criarTelaJogo() {
         JPanel panel = new JPanel();
-        panel.setBackground(Color.MAGENTA);
+        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setLayout(new FlowLayout());
 
-        JButton botao_voltar = new JButton("Teste prox tela - no jogo será botao voltar");
-        botao_voltar.addActionListener(new ActionListener() {
+        JButton botao_regras = new JButton("Ver Regras");
+        botao_regras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "PERDEU"); // Troca para a tela de configurações
+                cardLayout.show(painelCartoes, "REGRAS");
             }
         });
-        panel.add(botao_voltar);
-        return panel;
-    }
 
-    private JPanel exibir_tela_perdeu() {
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.RED);
-
-        JButton botao_novojogo = new JButton("Iniciar novo jogo");
-        botao_novojogo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "GANHOU"); // Troca de volta para a tela do jogo
-            }
-        });
-        panel.add(botao_novojogo);
-        return panel;
-    }
-
-     private JPanel exibir_tela_ganhou() {
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.GREEN);
-   
-        JButton botao_novojogo = new JButton("Iniciar novo Jogo");
-        botao_novojogo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "JOGO"); // Troca de volta para a tela do jogo
-            }
-        });
-        panel.add(botao_novojogo);
+        panel.add(new JLabel("Bem-vindo ao Jogo da Forca!"));
+        panel.add(botao_regras);
         return panel;
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new GUI().setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new GUI());
     }
 }
