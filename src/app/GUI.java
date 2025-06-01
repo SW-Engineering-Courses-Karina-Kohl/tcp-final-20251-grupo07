@@ -4,7 +4,6 @@ import app.UI.Estilos;
 import app.telas.*;
 import javax.swing.*;
 import java.awt.*;
-import app.Palavra;
 import java.util.List;
 
 
@@ -15,7 +14,6 @@ public class GUI extends JFrame {
     private CardLayout cardLayout;
     private JPanel painelCartoes;
     private int numvidas;
-    private Palavra palavraAtual; 
 
     private void reiniciarJogo() {
         numvidas = 7;
@@ -29,11 +27,7 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
 
         numvidas = 7;
-
-        Palavra gerador = new Palavra("placeholder", 0, null);
-        List<Palavra> lista = gerador.criaListaPalavras();
-        palavraAtual = gerador.escolhePalavraSecreta(lista);
-
+        
         // Painel amarelo (fundo)
         JPanel painelFundo = new JPanel();
         painelFundo.setBackground(Estilos.AMARELO);
@@ -48,8 +42,8 @@ public class GUI extends JFrame {
 
         JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
         JPanel telaRegras = TelaRegras.criar(cardLayout, painelCartoes);
-        JPanel telaPerdeu = TelaPerdeu.criar(cardLayout, painelCartoes, palavraAtual.getPalavra().toUpperCase(), this::reiniciarJogo);
-        JPanel telaGanhou = TelaGanhou.criar(cardLayout, painelCartoes, palavraAtual.getPalavra().toUpperCase(), this::reiniciarJogo);
+        JPanel telaPerdeu = TelaPerdeu.criar(cardLayout, painelCartoes, "TESTE", this::reiniciarJogo);
+        JPanel telaGanhou = TelaGanhou.criar(cardLayout, painelCartoes, "teste", this::reiniciarJogo);
 
         painelCartoes.add(telaJogo, "JOGO");
         painelCartoes.add(telaRegras, "REGRAS");
