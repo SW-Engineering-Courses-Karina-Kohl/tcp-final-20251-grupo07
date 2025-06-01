@@ -84,7 +84,11 @@ public class Palavra {
                             case "viloes.txt":
                                 c = new Vilao("Personagens");
                                 break;
-
+                            
+                            case "animacao.txt":
+                                c = new Animacao("Personagens");
+                                break;
+                                
                             default:
                                 throw new IllegalArgumentException("Arquivo inválido: " + nomeArquivo);    
                         }
