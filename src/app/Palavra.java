@@ -25,7 +25,7 @@ public class Palavra {
     public List<Palavra> criaListaPalavras(){
         List<Palavra> listaPalavras = new ArrayList<>();
 
-        String[] arquivos = {"america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt", "herois.txt", "viloes.txt"};
+        String[] arquivos = {"america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt", "herois.txt", "viloes.txt", "animacao.txt"};
 
         // loop que itera sobre o array de diretórios.
         // cada arquivo define a categoria a ser adicionada à palavra.
