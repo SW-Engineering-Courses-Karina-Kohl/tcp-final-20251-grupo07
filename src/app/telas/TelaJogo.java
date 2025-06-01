@@ -1,20 +1,23 @@
 package app.telas;
 
 import javax.swing.*;
+
+import app.UI.Estilos;
+
 import java.awt.*;
 
 public class TelaJogo {
 
     public static JPanel criar(CardLayout cardLayout, JPanel painelCartoes, int numvidas) {
         JPanel painelJogo = new JPanel();
-        painelJogo.setBackground(new Color(247, 231, 166));
-        painelJogo.setLayout(new GridBagLayout()); // centraliza o painel interno
+        painelJogo.setBackground(Estilos.AMARELO);
+        painelJogo.setLayout(new GridBagLayout()); 
 
         JPanel caixaJogo = new JPanel();
-        caixaJogo.setPreferredSize(new Dimension(800, 400));
-        caixaJogo.setBackground(new Color(218, 201, 164));
+        caixaJogo.setPreferredSize(Estilos.TAMANHO_TELA_JOGO);
+        caixaJogo.setBackground(Estilos.CINZA);
         caixaJogo.setBorder(BorderFactory.createDashedBorder(Color.GRAY));
-        caixaJogo.setLayout(null); // para usar posicionamento absoluto
+        caixaJogo.setLayout(null); 
 
         // ---------- Botão Regras ----------
         JButton botaoRegras = new JButton("Regras");
