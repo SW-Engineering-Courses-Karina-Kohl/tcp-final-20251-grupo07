@@ -4,8 +4,6 @@ import app.UI.Estilos;
 import app.telas.*;
 import java.awt.*;
 import javax.swing.*;
-import java.util.List;
-
 
 //botoes arredondados
 //fonte Departure Mono
@@ -53,18 +51,6 @@ public class GUI extends JFrame {
         painelCartoes.add(telaGanhou, "GANHOU");
 
         painelFundo.add(painelCartoes);
-
-        // Botões de teste temporários
-        JPanel botoesTeste = new JPanel();
-        botoesTeste.setOpaque(false);
-        JButton btnVitoria = new JButton("Ver Vitória");
-        btnVitoria.addActionListener(e -> cardLayout.show(painelCartoes, "GANHOU"));
-        JButton btnDerrota = new JButton("Ver Derrota");
-        btnDerrota.addActionListener(e -> cardLayout.show(painelCartoes, "PERDEU"));
-        botoesTeste.add(btnVitoria);
-        botoesTeste.add(btnDerrota);
-
-        painelFundo.add(botoesTeste, new GridBagConstraints()); 
 
         cardLayout.show(painelCartoes, "JOGO");
 
