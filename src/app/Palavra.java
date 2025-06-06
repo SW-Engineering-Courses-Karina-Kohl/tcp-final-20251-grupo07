@@ -128,4 +128,9 @@ public class Palavra {
     public Categoria getNome() {
         return nome;
     }
+
+       public boolean contemLetra(char letra) {
+        // Verifica se a letra está na palavra
+        return this.palavra.toLowerCase().contains(String.valueOf(letra).toLowerCase());
+    }
 }
