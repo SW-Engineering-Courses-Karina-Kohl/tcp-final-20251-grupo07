@@ -1,8 +1,8 @@
 package app;
 
 import app.telas.*;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 //botoes arredondados
 //fonte Departure Mono
@@ -11,6 +11,11 @@ public class GUI extends JFrame {
     private CardLayout cardLayout;
     private JPanel painelCartoes;
     private int numvidas;
+
+    private void reiniciarJogo() {
+        numvidas = 7;
+        cardLayout.show(painelCartoes, "JOGO");
+    }
 
     public GUI() {
         setTitle("Jogo da Forca");
@@ -33,20 +38,31 @@ public class GUI extends JFrame {
         painelCartoes.setBackground(new Color(218, 201, 164));
 
         // Criar as telas e adicioná-las ao painel de cartões
-        JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
+        //JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
+        JPanel telaJogo = new TelaJogo(cardLayout, painelCartoes);
         JPanel telaRegras = TelaRegras.criar(cardLayout, painelCartoes);
-        JPanel telaPerdeu = new JPanel(); 
-        JPanel telaGanhou = new JPanel(); 
+        JPanel telaPerdeu = TelaPerdeu.criar(cardLayout, painelCartoes, "TESTE", this::reiniciarJogo);
+        JPanel telaGanhou = TelaGanhou.criar(cardLayout, painelCartoes, "teste", this::reiniciarJogo);
 
         painelCartoes.add(telaJogo, "JOGO");
         painelCartoes.add(telaRegras, "REGRAS");
         painelCartoes.add(telaPerdeu, "PERDEU");
         painelCartoes.add(telaGanhou, "GANHOU");
 
-        // Adiciona o painel com as telas dentro do painel amarelo
         painelFundo.add(painelCartoes);
 
-        // Exibe direto a tela do jogo ao abrir o programa
+        // Botões de teste temporários
+        JPanel botoesTeste = new JPanel();
+        botoesTeste.setOpaque(false);
+        JButton btnVitoria = new JButton("Ver Vitória");
+        btnVitoria.addActionListener(e -> cardLayout.show(painelCartoes, "GANHOU"));
+        JButton btnDerrota = new JButton("Ver Derrota");
+        btnDerrota.addActionListener(e -> cardLayout.show(painelCartoes, "PERDEU"));
+        botoesTeste.add(btnVitoria);
+        botoesTeste.add(btnDerrota);
+
+        painelFundo.add(botoesTeste, new GridBagConstraints()); 
+
         cardLayout.show(painelCartoes, "JOGO");
 
         setVisible(true);

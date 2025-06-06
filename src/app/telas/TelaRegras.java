@@ -1,7 +1,7 @@
 package app.telas;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class TelaRegras {
 
