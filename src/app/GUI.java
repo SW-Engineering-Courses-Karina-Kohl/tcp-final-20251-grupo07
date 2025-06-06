@@ -1,8 +1,11 @@
 package app;
 
+import app.UI.Estilos;
 import app.telas.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+
 
 //botoes arredondados
 //fonte Departure Mono
@@ -12,41 +15,55 @@ public class GUI extends JFrame {
     private JPanel painelCartoes;
     private int numvidas;
 
+    private void reiniciarJogo() {
+        numvidas = 7;
+        cardLayout.show(painelCartoes, "JOGO");
+    }
+
     public GUI() {
         setTitle("Jogo da Forca");
-        setSize(1080, 600);
+        setSize(Estilos.TAMANHO_TELA_PADRAO);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        numvidas = 7; 
-
+        numvidas = 7;
+        
         // Painel amarelo (fundo)
         JPanel painelFundo = new JPanel();
-        painelFundo.setBackground(new Color(247, 231, 166));
+        painelFundo.setBackground(Estilos.AMARELO);
         painelFundo.setLayout(new GridBagLayout()); // centraliza o painel de conteúdo
         add(painelFundo);
 
         // Painel cinza menor com CardLayout para alternar telas
         cardLayout = new CardLayout();
         painelCartoes = new JPanel(cardLayout);
-        painelCartoes.setPreferredSize(new Dimension(800, 500));
-        painelCartoes.setBackground(new Color(218, 201, 164));
+        painelCartoes.setPreferredSize(Estilos.TAMANHO_TELA_JOGO);
+        painelCartoes.setBackground(Estilos.CINZA);
 
-        // Criar as telas e adicioná-las ao painel de cartões
         JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
         JPanel telaRegras = TelaRegras.criar(cardLayout, painelCartoes);
-        JPanel telaPerdeu = new JPanel(); 
-        JPanel telaGanhou = new JPanel(); 
+        JPanel telaPerdeu = TelaPerdeu.criar(cardLayout, painelCartoes, "TESTE", this::reiniciarJogo);
+        JPanel telaGanhou = TelaGanhou.criar(cardLayout, painelCartoes, "teste", this::reiniciarJogo);
 
         painelCartoes.add(telaJogo, "JOGO");
         painelCartoes.add(telaRegras, "REGRAS");
         painelCartoes.add(telaPerdeu, "PERDEU");
         painelCartoes.add(telaGanhou, "GANHOU");
 
-        // Adiciona o painel com as telas dentro do painel amarelo
         painelFundo.add(painelCartoes);
 
-        // Exibe direto a tela do jogo ao abrir o programa
+        // Botões de teste temporários
+        JPanel botoesTeste = new JPanel();
+        botoesTeste.setOpaque(false);
+        JButton btnVitoria = new JButton("Ver Vitória");
+        btnVitoria.addActionListener(e -> cardLayout.show(painelCartoes, "GANHOU"));
+        JButton btnDerrota = new JButton("Ver Derrota");
+        btnDerrota.addActionListener(e -> cardLayout.show(painelCartoes, "PERDEU"));
+        botoesTeste.add(btnVitoria);
+        botoesTeste.add(btnDerrota);
+
+        painelFundo.add(botoesTeste, new GridBagConstraints()); 
+
         cardLayout.show(painelCartoes, "JOGO");
 
         setVisible(true);
