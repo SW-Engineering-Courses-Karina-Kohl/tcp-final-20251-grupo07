@@ -16,21 +16,22 @@ public class Palavra {
     private int numLetras;
     private Categoria nome;
 
-    public Palavra (String palavra, int numLetras, Categoria categoria){
+    public Palavra(String palavra, int numLetras, Categoria categoria) {
         this.palavra = palavra;
         this.numLetras = numLetras;
         this.nome = categoria;
     }
-    
-    public List<Palavra> criaListaPalavras(){
+
+    public List<Palavra> criaListaPalavras() {
         List<Palavra> listaPalavras = new ArrayList<>();
 
-        String[] arquivos = {"america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt", "herois.txt", "viloes.txt", "animacao.txt"};
+        String[] arquivos = { "america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt",
+                "herois.txt", "viloes.txt", "animacao.txt" };
 
         // loop que itera sobre o array de diretórios.
         // cada arquivo define a categoria a ser adicionada à palavra.
 
-        // exemplo para "viloes.txt": 
+        // exemplo para "viloes.txt":
         // Categoria ctg = new Vilao("Personagem");
         // Palavra p = new Palavra(linha, linha.length(), ctg);
         // listaPalavras.add(p);
@@ -39,7 +40,7 @@ public class Palavra {
             System.out.println("Lendo: " + nomeArquivo); // debug
 
             try (InputStream is = Palavra.class.getClassLoader().getResourceAsStream(nomeArquivo);
-                BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
 
                 if (is == null) {
                     System.err.println("Arquivo não encontrado: " + nomeArquivo);
@@ -52,7 +53,7 @@ public class Palavra {
                     if (!linha.isEmpty()) {
                         Categoria c;
 
-                        switch(nomeArquivo){
+                        switch (nomeArquivo) {
                             case "america.txt":
                                 c = new America("Países");
                                 break;
@@ -84,13 +85,13 @@ public class Palavra {
                             case "viloes.txt":
                                 c = new Vilao("Personagens");
                                 break;
-                            
+
                             case "animacao.txt":
                                 c = new Animacao("Personagens");
                                 break;
-                                
+
                             default:
-                                throw new IllegalArgumentException("Arquivo inválido: " + nomeArquivo);    
+                                throw new IllegalArgumentException("Arquivo inválido: " + nomeArquivo);
                         }
 
                         Palavra p = new Palavra(linha, linha.length(), c);
@@ -102,13 +103,13 @@ public class Palavra {
                 e.printStackTrace();
             }
         }
-        // retorna a lista completa de palavras, contendo todas as palavras de todos os arquivos, com suas respectivas categorias.
+        // retorna a lista completa de palavras, contendo todas as palavras de todos os
+        // arquivos, com suas respectivas categorias.
         return listaPalavras;
     }
 
-    
-    public Palavra escolhePalavraSecreta(List<Palavra> lista){
-        if (lista==null || lista.isEmpty()){
+    public Palavra escolhePalavraSecreta(List<Palavra> lista) {
+        if (lista == null || lista.isEmpty()) {
             return null; // trocar para lançar exceção?
         }
 
@@ -126,5 +127,10 @@ public class Palavra {
 
     public Categoria getNome() {
         return nome;
+    }
+
+       public boolean contemLetra(char letra) {
+        // Verifica se a letra está na palavra
+        return this.palavra.toLowerCase().contains(String.valueOf(letra).toLowerCase());
     }
 }
