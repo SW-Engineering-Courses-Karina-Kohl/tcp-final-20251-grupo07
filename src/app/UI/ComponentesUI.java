@@ -1,8 +1,7 @@
 package app.UI;
 
-import javax.swing.*;
-
 import java.awt.*;
+import javax.swing.*;
 
 public class ComponentesUI {
 

@@ -2,8 +2,8 @@ package app;
 
 import app.UI.Estilos;
 import app.telas.*;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 import java.util.List;
 
 
@@ -40,7 +40,9 @@ public class GUI extends JFrame {
         painelCartoes.setPreferredSize(Estilos.TAMANHO_TELA_JOGO);
         painelCartoes.setBackground(Estilos.CINZA);
 
-        JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
+        // Criar as telas e adicioná-las ao painel de cartões
+        //JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);
+        JPanel telaJogo = new TelaJogo(cardLayout, painelCartoes);
         JPanel telaRegras = TelaRegras.criar(cardLayout, painelCartoes);
         JPanel telaPerdeu = TelaPerdeu.criar(cardLayout, painelCartoes, "TESTE", this::reiniciarJogo);
         JPanel telaGanhou = TelaGanhou.criar(cardLayout, painelCartoes, "teste", this::reiniciarJogo);

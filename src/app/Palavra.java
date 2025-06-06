@@ -1,12 +1,10 @@
 package app;
 
 import categorias.*;
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -122,5 +120,10 @@ public class Palavra {
 
     public Categoria getNome() {
         return nome;
+    }
+
+    public boolean contemLetra(char letra) {
+        // Verifica se a letra está na palavra
+        return this.palavra.toLowerCase().contains(String.valueOf(letra).toLowerCase());
     }
 }

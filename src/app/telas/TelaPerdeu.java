@@ -2,8 +2,8 @@ package app.telas;
 
 import app.UI.ComponentesUI;
 import app.UI.Estilos;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class TelaPerdeu {
     public static JPanel criar(CardLayout cardLayout, JPanel painelCartoes, String palavra, Runnable aoReiniciar) {

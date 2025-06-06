@@ -1,9 +1,9 @@
 package app.telas;
 
-import javax.swing.*;
-import java.awt.*;
 import app.UI.ComponentesUI;
 import app.UI.Estilos;
+import java.awt.*;
+import javax.swing.*;
 
 public class TelaGanhou {
 

@@ -1,10 +1,7 @@
 package app.telas;
-
-import javax.swing.*;
-
 import app.UI.Estilos;
-
 import java.awt.*;
+import javax.swing.*;
 
 public class TelaRegras {
 
