@@ -1,6 +1,9 @@
 package app.telas;
 
 import javax.swing.*;
+
+import app.UI.Estilos;
+
 import java.awt.*;
 
 public class TelaRegras {
@@ -8,13 +11,13 @@ public class TelaRegras {
     public static JPanel criar(CardLayout cardLayout, JPanel painelCartoes) {
         // Painel principal da tela de regras (fundo amarelo)
         JPanel painelRegras = new JPanel();
-        painelRegras.setBackground(new Color(247, 231, 166)); // amarelo claro
+        painelRegras.setBackground(Estilos.AMARELO); 
         painelRegras.setLayout(new GridBagLayout()); // centraliza o painel de regras
 
         // Painel interno com regras (caixa central)
         JPanel caixaRegras = new JPanel();
-        caixaRegras.setPreferredSize(new Dimension(800, 400));
-        caixaRegras.setBackground(new Color(218, 201, 164));
+        caixaRegras.setPreferredSize(Estilos.TAMANHO_TELA_JOGO);
+        caixaRegras.setBackground(Estilos.CINZA);
         caixaRegras.setBorder(BorderFactory.createDashedBorder(Color.GRAY));
         caixaRegras.setLayout(new BorderLayout(10, 10));
 
@@ -22,14 +25,14 @@ public class TelaRegras {
         JPanel topo = new JPanel(new BorderLayout());
         topo.setOpaque(false);
         JLabel titulo = new JLabel("COMO JOGAR");
-        titulo.setFont(new Font("Departure Mono", Font.BOLD | Font.ITALIC, 20));
+        titulo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 40));
         topo.add(titulo, BorderLayout.WEST);
 
         JButton fechar = new JButton("X");
         fechar.setFocusable(false);
         fechar.setMargin(new Insets(2, 8, 2, 8));
         fechar.setBackground(Color.WHITE);
-        fechar.setFont(new Font("Departure Mono", Font.BOLD, 12));
+        fechar.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 
         // Ação do botão: voltar para a tela "JOGO"
         fechar.addActionListener(e -> cardLayout.show(painelCartoes, "JOGO"));
@@ -47,7 +50,7 @@ public class TelaRegras {
             </html>
             """;
         JLabel textoRegras = new JLabel(regrasHTML);
-        textoRegras.setFont(new Font("Departure Mono", Font.PLAIN, 14));
+        textoRegras.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
 
         // Adiciona componentes ao painel
         caixaRegras.add(topo, BorderLayout.NORTH);
