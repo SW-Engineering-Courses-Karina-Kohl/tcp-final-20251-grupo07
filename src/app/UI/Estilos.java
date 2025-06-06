@@ -1,8 +1,6 @@
 package app.UI;
 
 import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.AbstractBorder;
 
 public class Estilos {
     public static final Color AMARELO = (new Color(247, 231, 166));
@@ -16,32 +14,4 @@ public class Estilos {
     public static final Dimension TAMANHO_TELA_JOGO = new Dimension(800,500);
     public static final Dimension TAMANHO_TELA_PADRAO = new Dimension(1080,600);
 
-    public static JButton botaoArredondado(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setFocusPainted(false);
-        botao.setFont(FONTE_PADRAO);
-        botao.setBackground(new Color(255, 255, 255));
-        botao.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        botao.setContentAreaFilled(false);
-        botao.setOpaque(true);
-        botao.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-        botao.setPreferredSize(new Dimension(150, 40));
-        botao.setBorder(new RoundedBorder(20)); // Borda personalizada
-        return botao;
-    }
-
-    // Classe interna para bordas arredondadas
-    public static class RoundedBorder extends AbstractBorder {
-        private final int radius;
-
-        public RoundedBorder(int radius) {
-            this.radius = radius;
-        }
-
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.setColor(Color.GRAY);
-            g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
-        }
-    }
 }
