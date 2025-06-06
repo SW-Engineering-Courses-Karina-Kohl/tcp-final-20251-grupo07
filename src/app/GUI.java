@@ -1,8 +1,11 @@
 package app;
 
+import app.UI.Estilos;
 import app.telas.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.List;
+
 
 //botoes arredondados
 //fonte Departure Mono
@@ -19,23 +22,23 @@ public class GUI extends JFrame {
 
     public GUI() {
         setTitle("Jogo da Forca");
-        setSize(1080, 600);
+        setSize(Estilos.TAMANHO_TELA_PADRAO);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        numvidas = 7; 
-
+        numvidas = 7;
+        
         // Painel amarelo (fundo)
         JPanel painelFundo = new JPanel();
-        painelFundo.setBackground(new Color(247, 231, 166));
+        painelFundo.setBackground(Estilos.AMARELO);
         painelFundo.setLayout(new GridBagLayout()); // centraliza o painel de conteúdo
         add(painelFundo);
 
         // Painel cinza menor com CardLayout para alternar telas
         cardLayout = new CardLayout();
         painelCartoes = new JPanel(cardLayout);
-        painelCartoes.setPreferredSize(new Dimension(800, 500));
-        painelCartoes.setBackground(new Color(218, 201, 164));
+        painelCartoes.setPreferredSize(Estilos.TAMANHO_TELA_JOGO);
+        painelCartoes.setBackground(Estilos.CINZA);
 
         // Criar as telas e adicioná-las ao painel de cartões
         //JPanel telaJogo = TelaJogo.criar(cardLayout, painelCartoes, numvidas);

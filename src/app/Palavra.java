@@ -23,7 +23,7 @@ public class Palavra {
     public List<Palavra> criaListaPalavras(){
         List<Palavra> listaPalavras = new ArrayList<>();
 
-        String[] arquivos = {"america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt", "herois.txt", "viloes.txt", "animacao.txt"};
+        String[] arquivos = {"america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt", "herois.txt", "viloes.txt"};
 
         // loop que itera sobre o array de diretórios.
         // cada arquivo define a categoria a ser adicionada à palavra.
@@ -82,11 +82,7 @@ public class Palavra {
                             case "viloes.txt":
                                 c = new Vilao("Personagens");
                                 break;
-                            
-                            case "animacao.txt":
-                                c = new Animacao("Personagens");
-                                break;
-                                
+
                             default:
                                 throw new IllegalArgumentException("Arquivo inválido: " + nomeArquivo);    
                         }
