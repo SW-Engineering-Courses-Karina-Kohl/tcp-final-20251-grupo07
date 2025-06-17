@@ -1,12 +1,10 @@
 package app;
 
 import categorias.*;
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,7 +20,7 @@ public class Palavra {
         this.nome = categoria;
     }
 
-    public List<Palavra> criaListaPalavras() {
+    public static List<Palavra> criaListaPalavras() {
         List<Palavra> listaPalavras = new ArrayList<>();
 
         String[] arquivos = { "america.txt", "asia.txt", "europa.txt", "aves.txt", "mamiferos.txt", "peixes.txt",
@@ -37,14 +35,18 @@ public class Palavra {
         // listaPalavras.add(p);
 
         for (String nomeArquivo : arquivos) {
+            String nomeCatTxt = nomeArquivo;
+            nomeArquivo = "resources/"+nomeArquivo;
             System.out.println("Lendo: " + nomeArquivo); // debug
-
             try (InputStream is = Palavra.class.getClassLoader().getResourceAsStream(nomeArquivo);
                     BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
 
                 if (is == null) {
                     System.err.println("Arquivo não encontrado: " + nomeArquivo);
                     return listaPalavras;
+                }
+                else {
+                    System.out.println("Arquivo carregado com sucesso!");
                 }
 
                 String linha;
@@ -53,7 +55,7 @@ public class Palavra {
                     if (!linha.isEmpty()) {
                         Categoria c;
 
-                        switch (nomeArquivo) {
+                        switch (nomeCatTxt) {
                             case "america.txt":
                                 c = new America("Países");
                                 break;
@@ -108,7 +110,7 @@ public class Palavra {
         return listaPalavras;
     }
 
-    public Palavra escolhePalavraSecreta(List<Palavra> lista) {
+    public static Palavra escolhePalavraSecreta(List<Palavra> lista) {
         if (lista == null || lista.isEmpty()) {
             return null; // trocar para lançar exceção?
         }
@@ -127,9 +129,9 @@ public class Palavra {
 
     public Categoria getNome() {
         return nome;
-    }
+    }       
 
-       public boolean contemLetra(char letra) {
+    public boolean contemLetra(char letra) {
         // Verifica se a letra está na palavra
         return this.palavra.toLowerCase().contains(String.valueOf(letra).toLowerCase());
     }

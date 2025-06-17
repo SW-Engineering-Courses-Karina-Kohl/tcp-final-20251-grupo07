@@ -3,6 +3,7 @@ import app.Jogo;
 import app.UI.Estilos;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.Normalizer;
 import javax.swing.*;
 
 
@@ -15,6 +16,10 @@ public class TelaJogo extends JPanel {
     private JPanel caixaJogo;
     private CardLayout cardLayout;
     private JPanel painelCartoes;
+    private JPanel painelLetrasTestadas;
+    private JLabel letrasTestadasLabel;
+
+
 
 
 
@@ -32,6 +37,10 @@ public class TelaJogo extends JPanel {
         caixaJogo.setBorder(BorderFactory.createDashedBorder(Color.GRAY));
         caixaJogo.setLayout(null); // para usar posicionamento absoluto
         
+        // ---------- Adiciona painel de letras testadas ----------
+        
+
+
         // ---------- Adiciona key listener ----------
         this.setupKeyBindings();
 
@@ -88,18 +97,20 @@ public class TelaJogo extends JPanel {
                     int letter_in = jogo.checaLetra(key.charAt(0));
                     switch (letter_in) {
                         case 0:
-                            System.out.println(key + " Letter já testada.");
                             break;
                         case 1:
                             revealLetter(key.charAt(0), jogo.getPalavra());
+                            atualizarLetrasTestadas();
                             if (todasLetrasAcertadas(jogo.getPalavra())) {
-                                System.out.println("Todas as letras foram acertadas!");
+                                resetGame(); 
                                 cardLayout.show(painelCartoes, "GANHOU");
                             }
                             break;
                         case -1:
                             labelImagem.setIcon(new ImageIcon(generate_image()));
+                            atualizarLetrasTestadas();
                             if (jogo.getNumvidas() <= 0) {
+                                resetGame();
                                 cardLayout.show(painelCartoes, "PERDEU");
                             }
                             break;
@@ -131,14 +142,16 @@ public class TelaJogo extends JPanel {
 
     private void setupWordDisplay(String palavra) {
         wordPanel = new JPanel();
-        wordPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
+        wordPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5)); 
         wordPanel.setOpaque(false);
-        wordPanel.setBounds(250, 220, 700, 100); 
+        wordPanel.setBounds(250, 220, 500, 100); 
 
         int n = palavra.length();
         letterLabels = new JLabel[n];
 
         for (int i = 0; i < n; i++) {
+            char c = palavra.charAt(i);
+
             JPanel letterBox = new JPanel();
             letterBox.setLayout(new BoxLayout(letterBox, BoxLayout.Y_AXIS));
             letterBox.setOpaque(false);
@@ -156,6 +169,10 @@ public class TelaJogo extends JPanel {
             underline.setAlignmentX(Component.CENTER_ALIGNMENT);
             underline.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
+            if (c == ' ') {
+                underline.setText("   "); 
+            }
+
             letterBox.add(letterLabel);
             letterBox.add(Box.createVerticalStrut(-6));  // reduz espaçamento entre a letra e o sublinhado
             letterBox.add(underline);
@@ -164,34 +181,89 @@ public class TelaJogo extends JPanel {
             letterLabels[i] = letterLabel;
         }
 
+        painelLetrasTestadas = new JPanel();
+        painelLetrasTestadas.setLayout(new BoxLayout(painelLetrasTestadas, BoxLayout.Y_AXIS));
+        painelLetrasTestadas.setOpaque(false);
+        painelLetrasTestadas.setBounds(30, 350, 700, 80);
+
+        JLabel tituloTestadas = new JLabel("Letras Erradas:");
+        tituloTestadas.setFont(new Font("SansSerif", Font.BOLD, 18));
+        tituloTestadas.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        letrasTestadasLabel = new JLabel("");
+        letrasTestadasLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        letrasTestadasLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        painelLetrasTestadas.add(tituloTestadas);
+        painelLetrasTestadas.add(Box.createVerticalStrut(5));
+        painelLetrasTestadas.add(letrasTestadasLabel);
+
         caixaJogo.add(wordPanel);
+        caixaJogo.add(painelLetrasTestadas);
+
+
     }
 
 
     private void revealLetter(char guessedLetter, String palavra) {
         palavra = palavra.toUpperCase();
-        for (int i = 0; i < palavra.length(); i++) {
-            if (palavra.charAt(i) == guessedLetter) {
+        String normalizada = Normalizer.normalize(palavra, Normalizer.Form.NFD);
+        String palavra_limpa = normalizada.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+
+        for (int i = 0; i < palavra_limpa.length(); i++) {
+            if (palavra_limpa.charAt(i) == guessedLetter) {
                 
-                letterLabels[i].setText(String.valueOf(guessedLetter));
+                letterLabels[i].setText(String.valueOf(palavra.charAt(i)));
             }
         }
     }
 
     public boolean todasLetrasAcertadas(String palavra) {
-        palavra = palavra.toUpperCase(); // Certifica-se de que a palavra está em maiúsculas
+        palavra = palavra.toUpperCase(); 
         for (int i = 0; i < palavra.length(); i++) {
             char letraEsperada = palavra.charAt(i);
             String letraExibida = letterLabels[i].getText();
             
             // Se a letra exibida estiver vazia ou diferente da letra esperada, ainda falta acertar
-            if (letraExibida.isEmpty() || letraExibida.charAt(0) != letraEsperada) {
+            //  ignora quando a letra esperada é um espaço
+            if ((letraExibida.isEmpty() || letraExibida.charAt(0) != letraEsperada) && !(letraEsperada == ' ')) {
+                System.out.println("Letra esperada: " + letraEsperada + ", letra exibida: " + letraExibida);
                 return false;
             }
         }
         return true; // todas as letras estão corretas
     }
 
+    private void atualizarLetrasTestadas() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Character c : jogo.getLetrasTestadas()) {
+            sb.append(c).append(" ");
+        }
+
+        letrasTestadasLabel.setText(sb.toString());
+    }
+
     
+    private void resetGame() {
+        // remover o painel de letras atual
+        caixaJogo.remove(wordPanel);
+
+        // reseta o jogo
+        jogo.reset();
+
+        // limpa letras testadas
+        letrasTestadasLabel.setText("");
+
+        // reseta imagem
+        labelImagem.setIcon(new ImageIcon(generate_image()));
+
+        // reseta a exibição das letras
+        setupWordDisplay(jogo.getPalavra());
+
+        // recarrega layout
+        caixaJogo.revalidate();
+        caixaJogo.repaint();
+    }
 
 }

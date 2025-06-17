@@ -1,6 +1,7 @@
 package app;
 import categorias.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Jogo {
@@ -9,13 +10,7 @@ public class Jogo {
     private Categoria categoria; // categoria da palavra
     private Palavra palavra; // palavra a ser adivinhada
     private Set<Character> letrasTestadas;
-
-    public Jogo(Categoria categoria, Palavra palavra) {
-        this.numvidas = 7;
-        this.categoria = categoria;
-        this.palavra = palavra;
-        this.letrasTestadas = new HashSet<>();
-    }
+    private List<Palavra> listaPalavras;
 
     public Jogo() {
         //print test message
@@ -23,13 +18,19 @@ public class Jogo {
         this.numvidas = 7;
         Categoria cat = new America("america");
         this.categoria = cat;
-        Palavra pal = new Palavra("argentina", 6, cat);
-        this.palavra = pal;
+        
         this.letrasTestadas = new HashSet<>();
+        this.listaPalavras = Palavra.criaListaPalavras();
+        this.trocaPalavra();
+
     }
 
     public int getNumvidas() {
         return numvidas;
+    }
+
+    public void setNumvidas(int numvidas) {
+        this.numvidas = numvidas;
     }
 
     public int checaLetra(char letra) {
@@ -61,5 +62,16 @@ public class Jogo {
     public String getPalavra() {
         // Retorna a palavra a ser adivinhada
         return this.palavra.getPalavra();
+    }
+
+    public final void trocaPalavra(){
+        this.palavra = Palavra.escolhePalavraSecreta(listaPalavras);
+    }
+
+    public void reset() {
+        // Reseta o jogo para um novo início
+        this.numvidas = 7;
+        this.letrasTestadas.clear();
+        this.trocaPalavra();
     }
 }
