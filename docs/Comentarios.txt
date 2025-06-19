@@ -1,0 +1,13 @@
+19/06/2025
+
+Alguns comentários sobre uma olhada rápida que dei no código:
+- Palavra.java
+private Categoria nome: minha sugestão seria nomeCategoria
+no método criaListaPalavras, o switch usa um Categoria c, acho que poderia chamar de categoria mesmo
+Palavra p = new Palavra(linha, linha.length(), c);
+poderia ser palavra
+
+Bom que vocês estão mantendo a consistência de nomes de classes, métodos e pacotes tudo em português!
+
+No geral o código de vocês está bem bom! :-) Modular, respeitando abstração, encapsulamento, convenções.
+Parabéns até aqui!
