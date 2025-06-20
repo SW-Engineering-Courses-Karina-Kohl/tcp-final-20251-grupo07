@@ -8,7 +8,7 @@ public class SuperHeroi extends Personagem {
      @Override
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
     public String exibirDica () {
-        return "Este personagem é Super-Heroi.";
+        return "Este personagem é um Super-Heroi.";
     }
     
 }
