@@ -8,7 +8,7 @@ public class Animacao extends Personagem {
      @Override
     // Retorna o nome da categoria, impressão na tela é feita por outro método.
     public String exibirDica () {
-        return "Este personagem é animação.";
+        return "Este personagem é uma animação.";
     }
     
 }
