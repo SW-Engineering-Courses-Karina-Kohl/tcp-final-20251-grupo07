@@ -39,10 +39,11 @@ public class TelaRegras {
         String regrasHTML = """
             <html>
             <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Morbi tincidunt lobortis dignissim. In condimentum mattis elit.</li>
-                <li>Vestibulum ultricies non magna sit amet pellentesque.</li>
-                <li>Nam sollicitudin, justo eu ullamcorper sagittis...</li>
+                <li> O jogador tem 6 vidas para tentar adivinhar a palavra correta.</li>
+                <li> Cada erro reduz uma vida.</li>
+                <li> O botão categoria revela a categoria da palavra.</li>
+                <li> O botão dica revela uma dica sobre a palavra.</li>
+                <li> Utilize o teclado para selecionar as letras.</li>
             </ul>
             </html>
             """;

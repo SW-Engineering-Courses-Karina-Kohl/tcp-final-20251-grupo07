@@ -1,5 +1,6 @@
 package app.telas;
 import app.Jogo;
+import app.Palavra;
 import app.UI.Estilos;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,6 +19,7 @@ public class TelaJogo extends JPanel {
     private JPanel painelCartoes;
     private JPanel painelLetrasTestadas;
     private JLabel letrasTestadasLabel;
+    private JLabel labelCategoriaDica;
 
 
 
@@ -27,7 +29,8 @@ public class TelaJogo extends JPanel {
         this.jogo = new Jogo();
         this.cardLayout = cardLayout;
         this.painelCartoes = painelCartoes;
-
+        
+     
         this.setBackground(Estilos.AMARELO);
         this.setLayout(new GridBagLayout()); // centraliza o painel interno
 
@@ -36,10 +39,6 @@ public class TelaJogo extends JPanel {
         caixaJogo.setBackground(Estilos.CINZA);
         caixaJogo.setBorder(BorderFactory.createDashedBorder(Color.GRAY));
         caixaJogo.setLayout(null); // para usar posicionamento absoluto
-        
-        // ---------- Adiciona painel de letras testadas ----------
-        
-
 
         // ---------- Adiciona key listener ----------
         this.setupKeyBindings();
@@ -52,21 +51,40 @@ public class TelaJogo extends JPanel {
         botaoRegras.addActionListener(e -> this.cardLayout.show(this.painelCartoes, "REGRAS"));
         caixaJogo.add(botaoRegras);
 
-        // ---------- Botão Categoria ----------
+        // ---------- Botão Categoria e Dica  ----------
         JButton botaoCategoria = new JButton("Categoria"); //tem que exibir a classe categoria
         botaoCategoria.setBounds(130, 20, 110, 40);
         botaoCategoria.setBackground(new Color(249, 179, 159));
         botaoCategoria.setFocusable(false);
-        botaoCategoria.addActionListener(e -> this.cardLayout.show(this.painelCartoes, "CATEGORIA"));
         caixaJogo.add(botaoCategoria);
-
-        // ---------- Botão Dica ----------
+        
         JButton botaoDica = new JButton("Dica"); // tem que exibir a dica
         botaoDica.setBounds(250, 20, 100, 40);
         botaoDica.setBackground(new Color(213, 204, 224));
         botaoDica.setFocusable(false);
-        botaoDica.addActionListener(e -> cardLayout.show(this.painelCartoes, "DICA"));
         caixaJogo.add(botaoDica);
+
+        labelCategoriaDica = new JLabel();
+        labelCategoriaDica.setBounds(450, 27, 300, 30);
+        labelCategoriaDica.setFont(new Font("Arial", Font.BOLD, 15));
+        caixaJogo.add(labelCategoriaDica);  // Adiciona só uma vez
+
+ 
+        botaoCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {   
+                labelCategoriaDica.setText(jogo.getPalavra().getCategoria().exibirCategoria());
+                labelCategoriaDica.setVisible(true);
+            }
+        });
+
+        botaoDica.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                labelCategoriaDica.setText(jogo.getPalavra().getCategoria().exibirDica());
+                labelCategoriaDica.setVisible(true);
+            }
+        });
 
         // ---------- Imagem das vidas ----------
         Image imagemRedimensionada = generate_image();
@@ -75,12 +93,13 @@ public class TelaJogo extends JPanel {
         caixaJogo.add(this.labelImagem);
         
         // ---------- Exibição Palavras ----------
-        setupWordDisplay(jogo.getPalavra()); 
+        setupWordDisplay(jogo.getStringPalavra()); 
 
         this.add(caixaJogo);
 
         
     }
+
 
     public void setupKeyBindings() {
         InputMap im = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -95,29 +114,31 @@ public class TelaJogo extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int letter_in = jogo.checaLetra(key.charAt(0));
+                    Palavra palavraEncerrada = jogo.getPalavra(); // palavra antes do reset
                     switch (letter_in) {
-                        case 0:
-                            break;
                         case 1:
-                            revealLetter(key.charAt(0), jogo.getPalavra());
+                            revealLetter(key.charAt(0), jogo.getStringPalavra());
                             atualizarLetrasTestadas();
-                            if (todasLetrasAcertadas(jogo.getPalavra())) {
-                                resetGame(); 
+                            if (todasLetrasAcertadas(jogo.getStringPalavra())) {
+                                TelaGanhou.setPalavraEncerrada(palavraEncerrada);
                                 cardLayout.show(painelCartoes, "GANHOU");
+                                resetGame(); 
                             }
                             break;
                         case -1:
                             labelImagem.setIcon(new ImageIcon(generate_image()));
-                            atualizarLetrasTestadas();
                             if (jogo.getNumvidas() <= 0) {
-                                resetGame();
+                                TelaPerdeu.setPalavraEncerrada(palavraEncerrada);
                                 cardLayout.show(painelCartoes, "PERDEU");
+                                resetGame();
                             }
+                            atualizarLetrasTestadas();
                             break;
                     }
                     
 
                     System.out.println(key + " Letter pressed: " + letter_in);
+                    System.out.println("Numero de vidas: " + jogo.getNumvidas());
                 }
             });
         }
@@ -126,13 +147,13 @@ public class TelaJogo extends JPanel {
     private Image generate_image(){
         ImageIcon imagemOriginal;
         switch (jogo.getNumvidas()) {
-            case 7 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/forca.png"));
-            case 6 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_cabeca.png"));
-            case 5 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_torso.png"));
-            case 4 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_braco1.png"));
-            case 3 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_braco2.png"));
-            case 2 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_perna1.png"));
-            case 1, 0 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_completo.png"));
+            case 6 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/forca.png"));
+            case 5 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_cabeca.png"));
+            case 4 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_torso.png"));
+            case 3 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_braco1.png"));
+            case 2 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_braco2.png"));
+            case 1 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_perna1.png"));
+            case 0 -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_completo.png"));
             default -> imagemOriginal = new ImageIcon(TelaJogo.class.getResource("/imagens/boneco_completo.png"));
         }
 
@@ -186,7 +207,7 @@ public class TelaJogo extends JPanel {
         painelLetrasTestadas.setOpaque(false);
         painelLetrasTestadas.setBounds(30, 350, 700, 80);
 
-        JLabel tituloTestadas = new JLabel("Letras Erradas:");
+        JLabel tituloTestadas = new JLabel("Letras Testadas:");
         tituloTestadas.setFont(new Font("SansSerif", Font.BOLD, 18));
         tituloTestadas.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -204,6 +225,9 @@ public class TelaJogo extends JPanel {
 
     }
 
+    public Palavra getPalavraAtual() {
+        return jogo.getPalavra();
+    }
 
     private void revealLetter(char guessedLetter, String palavra) {
         palavra = palavra.toUpperCase();
@@ -255,11 +279,14 @@ public class TelaJogo extends JPanel {
         // limpa letras testadas
         letrasTestadasLabel.setText("");
 
+        labelCategoriaDica.setText("");
+
+
         // reseta imagem
         labelImagem.setIcon(new ImageIcon(generate_image()));
 
         // reseta a exibição das letras
-        setupWordDisplay(jogo.getPalavra());
+        setupWordDisplay(jogo.getStringPalavra());
 
         // recarrega layout
         caixaJogo.revalidate();
