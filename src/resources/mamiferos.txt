@@ -1,5 +1,5 @@
 Elefante  
-Leão  
+Leao  
 Tigre  
 Cachorro  
 Gato  
@@ -16,27 +16,27 @@ Canguru
 Lobo  
 Raposa  
 Leopardo  
-Onça-pintada  
-Bicho-preguiça  
-Tamanduá  
+Onça pintada  
+Bicho preguiça  
+Tamandua  
 Capivara  
 Lontra  
 Texugo  
-Antílope  
+Antilope  
 Cervo  
 Veado  
 Búfalo  
 Alce  
 Gorila  
-Chimpanzé  
+Chimpanze  
 Orangotango  
 Macaco  
-Porco-espinho  
-Dromedário  
+Porco espinho  
+Dromedario  
 Camelo  
 Tatu  
 Foca  
-Leão-marinho  
+Leão marinho  
 Coiote  
 Guaxinim  
 Panda  
@@ -45,5 +45,4 @@ Suricato
 Hiena  
 Mula  
 Porco   
-Mico-leão-dourado  
-Tamanduá-bandeira  
+Tamandua bandeira  

@@ -1,9 +1,9 @@
 Mickey Mouse
 Pernalonga
-Scooby-Doo
+Scooby Doo
 Bob Esponja
 Patrick Estrela
-Pica-Pau
+Pica Pau
 Elsa
 Shrek
 Fiona
@@ -12,10 +12,10 @@ Gru
 Goku
 Garfield
 Charlie Brown
-Perry, o Ornitorrinco
+Perry o Ornitorrinco
 Olaf
-Wall-E
-Clarêncio
+Wall E
+Clarencio
 Gumball
 Darwin
 Ferb
@@ -30,13 +30,12 @@ Magali
 Nemo
 Dory
 Bolt
-Angelina Bailarina
 Timmy Turner
 Lilo
 Stitch
 Pocoyo
 Dora Aventureira
-Irmão do Jorel
-Saltitão
+Irmao do Jorel
+Saltitao
 
 

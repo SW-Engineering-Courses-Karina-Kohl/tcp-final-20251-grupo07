@@ -1,15 +1,14 @@
-Tubarão-martelo  
-Tubarão-branco  
-Tubarão-tigre  
-Tubarão-cabeça-chata  
+Tubarao martelo  
+Tubarao branco  
+Tubarao tigre  
 Atum  
-Salmão  
+Salmao  
 Baiacu  
 Bagre  
 Linguado  
 Robalo  
 Dourado  
-Cavalo-marinho  
+Cavalo marinho  
 Moreia  
 Garoupa  
 Anchova  

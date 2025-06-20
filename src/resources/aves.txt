@@ -1,16 +1,16 @@
-Águia  
+Aguia  
 Arara  
 Andorinha  
-Beija-flor  
+Beija flor  
 Pombo  
 Coruja  
 Papagaio  
-Gavião  
-Falcão  
-Canário  
+Gaviao  
+Falcao  
+Canario  
 Tucano  
 Periquito  
-Pavão  
+Pavao  
 Garça  
 Condor  
 Marreco  
@@ -19,12 +19,10 @@ Gaivota
 Corvo  
 Rouxinol  
 Tordo  
-Pica-pau  
+Pica pau  
 Flamingo  
 Ema  
-Codorna  
-Sabiá  
-Curió  
+Codorna      
 Pomba  
 Galinha  
 Faisão  
@@ -35,14 +33,13 @@ Perdiz
 Alcarraza  
 Pintassilgo  
 Jandaia  
-Chimango  
-Socó  
-Gavião-carijó  
-João-de-barro  
-Saruê  
+Chimango    
+Gaviao  
+Joao de barro  
+Sarue  
 Curicaca  
 Japu  
 Sanhaço  
-Trinca-ferro  
+Trinca ferro  
 Canjerana  
-Biguá  
+Bigua  

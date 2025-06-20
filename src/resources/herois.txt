@@ -1,9 +1,9 @@
-Homem-Aranha  
+Homem Aranha  
 Superman  
 Batman  
-Mulher-Maravilha  
+Mulher Maravilha  
 Homem de Ferro  
-Capitão América  
+Capitao America  
 Thor  
 Hulk  
 Flash  
@@ -13,10 +13,9 @@ Deadpool
 Aquaman  
 Arqueiro Verde  
 Pantera Negra  
-Homem-Formiga  
+Homem Formiga  
 Vespa  
 Doutor Estranho  
-Capitã Marvel  
 Feiticeira Escarlate  
 Ciclope  
 Tempestade  
@@ -24,15 +23,15 @@ Noturno
 Motoqueiro Fantasma  
 Shazam  
 Cyborg  
-Mulher-Gato  
+Mulher Gato  
 Demolidor  
 Justiceiro  
-Gavião Arqueiro  
-Falcão  
-Visão  
-Mulher-Hulk  
+Gaviao Arqueiro  
+Falcao  
+Visao  
+Mulher Hulk  
 Cavaleiro da Lua  
-Fênix  
+Fenix  
 Gambit  
 Colossus  
 Estelar  
@@ -45,5 +44,5 @@ Luke Cage
 Punho de Ferro  
 Doutora Luz  
 Zatanna  
-Hércules  
+Hercules  
 Constantine
