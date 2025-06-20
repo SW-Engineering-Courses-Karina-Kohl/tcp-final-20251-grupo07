@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.text.Normalizer;
 
 public class Palavra {
     private String palavra;
@@ -131,9 +132,13 @@ public class Palavra {
         return nomeCategoria;
     }       
 
-
     public boolean contemLetra(char letra) {
-        // Verifica se a letra está na palavra
-        return this.palavra.toLowerCase().contains(String.valueOf(letra).toLowerCase());
+        // Normaliza a palavra e verifica se a letra está na palavra.
+        // Normalização coloca em lower case, remove acentos e cedilhas.
+        String palavraLimpa = Normalizer.normalize(this.palavra.toLowerCase(), Normalizer.Form.NFD)
+                                        .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                                        .replaceAll("ç", "c");
+
+        return palavraLimpa.contains(String.valueOf(letra).toLowerCase());
     }
 }

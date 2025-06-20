@@ -190,8 +190,12 @@ public class TelaJogo extends JPanel {
             underline.setAlignmentX(Component.CENTER_ALIGNMENT);
             underline.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
+            // Esconde o underscore caso exista espaço ou hífen na palavra.
             if (c == ' ') {
                 underline.setText("   "); 
+            }
+            else if (c == '-'){
+                underline.setText("   ");
             }
 
             letterBox.add(letterLabel);
@@ -249,8 +253,8 @@ public class TelaJogo extends JPanel {
             String letraExibida = letterLabels[i].getText();
             
             // Se a letra exibida estiver vazia ou diferente da letra esperada, ainda falta acertar
-            //  ignora quando a letra esperada é um espaço
-            if ((letraExibida.isEmpty() || letraExibida.charAt(0) != letraEsperada) && !(letraEsperada == ' ')) {
+            //  ignora quando a letra esperada é um espaço ou um hífen
+            if ((letraExibida.isEmpty() || letraExibida.charAt(0) != letraEsperada) && !(letraEsperada == ' ') && !(letraEsperada == '-')) {
                 System.out.println("Letra esperada: " + letraEsperada + ", letra exibida: " + letraExibida);
                 return false;
             }

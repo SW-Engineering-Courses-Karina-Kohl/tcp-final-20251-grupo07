@@ -12,7 +12,7 @@ public class Jogo {
 
     public Jogo() {
         //print test message
-        System.out.println("Iniciando um novo jogo test...");
+        System.out.println("Iniciando um novo jogo...");
         this.numvidas = 6;
         this.letrasTestadas = new HashSet<>();
         this.listaPalavras = Palavra.criaListaPalavras();
