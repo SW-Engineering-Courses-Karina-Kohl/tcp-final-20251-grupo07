@@ -1,5 +1,4 @@
 package app;
-import categorias.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,7 +6,6 @@ import java.util.Set;
 public class Jogo {
 
     private int numvidas;
-    private Categoria categoria; // categoria da palavra
     private Palavra palavra; // palavra a ser adivinhada
     private Set<Character> letrasTestadas;
     private List<Palavra> listaPalavras;
@@ -15,14 +13,16 @@ public class Jogo {
     public Jogo() {
         //print test message
         System.out.println("Iniciando um novo jogo test...");
-        this.numvidas = 7;
-        Categoria cat = new America("america");
-        this.categoria = cat;
-        
+        this.numvidas = 6;
         this.letrasTestadas = new HashSet<>();
         this.listaPalavras = Palavra.criaListaPalavras();
         this.trocaPalavra();
+        System.out.println("Palavra atual: " + palavra.getStringPalavra());
+    }
 
+    public Palavra getPalavra()
+    {
+        return palavra;
     }
 
     public int getNumvidas() {
@@ -59,9 +59,9 @@ public class Jogo {
         return letrasTestadas;
     }
 
-    public String getPalavra() {
+    public String getStringPalavra() {
         // Retorna a palavra a ser adivinhada
-        return this.palavra.getPalavra();
+        return this.palavra.getStringPalavra();
     }
 
     public final void trocaPalavra(){
@@ -70,8 +70,9 @@ public class Jogo {
 
     public void reset() {
         // Reseta o jogo para um novo início
-        this.numvidas = 7;
+        this.numvidas = 6;
         this.letrasTestadas.clear();
         this.trocaPalavra();
+        System.out.println("Palavra atual: " + palavra.getStringPalavra());
     }
 }
