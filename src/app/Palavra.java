@@ -12,12 +12,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Palavra {
     private String palavra;
     private int numLetras;
-    private Categoria nome;
+    private Categoria nomeCategoria;
 
-    public Palavra(String palavra, int numLetras, Categoria categoria) {
+    public Palavra(String palavra, int numLetras, Categoria nomeCategoria) {
         this.palavra = palavra;
         this.numLetras = numLetras;
-        this.nome = categoria;
+        this.nomeCategoria = nomeCategoria;
     }
 
     public static List<Palavra> criaListaPalavras() {
@@ -53,51 +53,51 @@ public class Palavra {
                 while ((linha = br.readLine()) != null) {
                     linha = linha.trim();
                     if (!linha.isEmpty()) {
-                        Categoria c;
+                        Categoria categoria;
 
                         switch (nomeCatTxt) {
                             case "america.txt":
-                                c = new America("Países");
+                                categoria = new America("Países");
                                 break;
 
                             case "asia.txt":
-                                c = new Asia("Países");
+                                categoria = new Asia("Países");
                                 break;
 
                             case "europa.txt":
-                                c = new Europa("Países");
+                                categoria = new Europa("Países");
                                 break;
 
                             case "aves.txt":
-                                c = new Aves("Animais");
+                                categoria = new Aves("Animais");
                                 break;
 
                             case "mamiferos.txt":
-                                c = new Mamifero("Animais");
+                                categoria = new Mamifero("Animais");
                                 break;
 
                             case "peixes.txt":
-                                c = new Marinho("Animais");
+                                categoria = new Marinho("Animais");
                                 break;
 
                             case "herois.txt":
-                                c = new SuperHeroi("Personagens");
+                                categoria = new SuperHeroi("Personagens");
                                 break;
 
                             case "viloes.txt":
-                                c = new Vilao("Personagens");
+                                categoria = new Vilao("Personagens");
                                 break;
 
                             case "animacao.txt":
-                                c = new Animacao("Personagens");
+                                categoria = new Animacao("Personagens");
                                 break;
 
                             default:
                                 throw new IllegalArgumentException("Arquivo inválido: " + nomeArquivo);
                         }
 
-                        Palavra p = new Palavra(linha, linha.length(), c);
-                        listaPalavras.add(p);
+                        Palavra palavra = new Palavra(linha, linha.length(), categoria);
+                        listaPalavras.add(palavra);
                     }
                 }
 
@@ -119,7 +119,7 @@ public class Palavra {
         return lista.get(randIndex);
     }
 
-    public String getPalavra() {
+    public String getStringPalavra() {
         return palavra;
     }
 
@@ -127,9 +127,10 @@ public class Palavra {
         return numLetras;
     }
 
-    public Categoria getNome() {
-        return nome;
+    public Categoria getCategoria() {
+        return nomeCategoria;
     }       
+
 
     public boolean contemLetra(char letra) {
         // Verifica se a letra está na palavra
