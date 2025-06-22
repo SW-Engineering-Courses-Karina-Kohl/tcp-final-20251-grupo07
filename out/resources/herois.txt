@@ -17,11 +17,9 @@ Homem-Formiga
 Vespa  
 Doutor Estranho  
 Capitã Marvel  
-Feiticeira Escarlate  
 Ciclope  
 Tempestade  
-Noturno  
-Motoqueiro Fantasma  
+Noturno    
 Shazam  
 Cyborg  
 Mulher-Gato  

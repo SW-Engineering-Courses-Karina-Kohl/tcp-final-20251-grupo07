@@ -18,7 +18,6 @@ Freddy Krueger
 Jason Voorhees  
 Light Yagami  
 Darth Vader  
-Imperador Palpatine  
 Sauron  
 Agente Smith  
 Megatron  
@@ -30,12 +29,10 @@ Capitão Gancho
 Scar  
 Jafar  
 Orochimaru  
-Shredder  
 Bowser  
 Ganondorf  
 M Bison  
 Dio Brando  
-Bellatrix Lestrange  
 Pennywise  
 Norman Bates  
 Leatherface  

@@ -1,8 +1,7 @@
 Águia  
 Arara  
 Andorinha  
-Beija-flor  
-Pombo  
+Beija-flor   
 Coruja  
 Papagaio  
 Gavião  
@@ -28,7 +27,6 @@ Curió
 Pomba  
 Galinha  
 Faisão  
-Rena  
 Jacu  
 Galo  
 Perdiz  

@@ -3,8 +3,7 @@ Alemanha
 Andorra  
 Áustria  
 Bélgica  
-Bielorrússia  
-Bósnia e Herzegovina  
+Bielorrússia    
 Bulgária  
 Chipre  
 Croácia  
@@ -35,7 +34,6 @@ Polônia
 Portugal  
 Reino Unido  
 República Tcheca  
-Macedônia do Norte  
 Romênia  
 San Marino  
 Sérvia  

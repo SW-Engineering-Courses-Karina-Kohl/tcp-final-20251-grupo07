@@ -13,7 +13,7 @@ Chipre
 Cingapura  
 Coreia do Norte  
 Coreia do Sul  
-Emirados Árabes Unidos  
+Emirados Árabes  
 Filipinas  
 Geórgia  
 Índia  
@@ -46,6 +46,6 @@ Turcomenistão
 Turquia  
 Uzbequistão  
 Vietnã  
-Iémen  
+Iêmen  
 Hong Kong  
 Macau

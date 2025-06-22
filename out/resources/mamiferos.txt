@@ -45,5 +45,4 @@ Suricato
 Hiena  
 Mula  
 Porco   
-Mico-leão-dourado  
-Tamanduá-bandeira  
+Lobo-guará
