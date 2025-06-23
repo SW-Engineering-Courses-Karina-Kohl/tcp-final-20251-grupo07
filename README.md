@@ -1,7 +1,8 @@
-![Java](https://img.shields.io/badge/Java-Swing-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![JUnit](https://img.shields.io/badge/junit-%23E33332?style=for-the-badge&logo=junit5&logoColor=white)
-
 # 🎯 Trabalho Final TCP 2025/1 - Jogo da Forca
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-Swing-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+  <img src="https://img.shields.io/badge/junit-%23E33332?style=for-the-badge&logo=junit5&logoColor=white" alt="JUnit" />
+</p>
 
 Este repositório contém o projeto elaborado pelo **Grupo 7** da disciplina de _Técnicas de Construção de Programas (TCP) 2025/1_, ministrada pela professora **Karina Kohl**.
 
